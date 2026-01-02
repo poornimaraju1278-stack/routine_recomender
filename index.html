@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Routine Recommender (Python)</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- PyScript -->
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .app-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 30px;
+        }
+        .app-title {
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .card {
+            border-radius: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="app-container">
+    <h2 class="app-title">🐍 Routine Recommender & Productive Planner</h2>
+
+    <div class="card p-4">
+        <label>⏰ Wake Time</label>
+        <input type="time" id="wake" class="form-control mb-2">
+
+        <label>🌙 Sleep Time</label>
+        <input type="time" id="sleep" class="form-control mb-2">
+
+        <label>📚 Study Hours</label>
+        <input type="number" id="study" class="form-control mb-2">
+
+        <label>🎯 Life Goal</label>
+        <select id="goal" class="form-control mb-3">
+            <option>Coding 💻</option>
+            <option>Fitness 💪</option>
+            <option>Reading 📖</option>
+            <option>Balanced Life 🌱</option>
+        </select>
+
+        <button class="btn btn-primary w-100" pys-onClick="generate">
+            ✨ Generate Routine
+        </button>
+    </div>
+
+    <div id="output" class="mt-4"></div>
+</div>
+
+<!-- PYTHON CODE -->
+<py-script>
+from pyscript import Element
+
+def generate(event):
+    wake = Element("wake").value
+    sleep = Element("sleep").value
+    study = Element("study").value
+    goal = Element("goal").value
+
+    output = Element("output")
+    output.element.innerHTML = f"""
+    <div class='card p-4'>
+        <h4>📅 Your Daily Plan</h4>
+        <p>⏰ Wake up at <b>{wake}</b></p>
+        <p>📚 Study for <b>{study} hours</b></p>
+        <p>🎯 Focus on <b>{goal}</b></p>
+        <p>🌙 Sleep at <b>{sleep}</b></p>
+        <hr>
+        <p>✨ Stay consistent. Small steps matter!</p>
+    </div>
+    """
+</py-script>
+
+</body>
+</html>
